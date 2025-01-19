@@ -43,13 +43,16 @@ class ProductController extends Controller
              'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
     ]);
 
-    
+    $input = $request->all();
      $product_id = Str::lower(str_replace(' ', '-', $request->name)).'-'.random_int(1000000, 99999999);
 
      $image = $request->file('image');
      $destinationPath = 'images/';
      $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
      $image->move($destinationPath, $profileImage);
+
+     
+     
 
      Product::insert([
          'product_id' => $product_id,

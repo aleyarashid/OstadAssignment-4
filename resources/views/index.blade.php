@@ -26,7 +26,7 @@
                     <table class="table table-bordered table-striped w-100">
                         <thead>
                             <tr>
-                                <th class="text-center">ID</th>
+                                <th class="text-center">SL</th>
                                 <th class="text-center">Product ID</i></th>
                                 <th class="text-center"><a href="{{ route('products.list', ['sortBy' => 'name', 'sort' =>request('sort') == 'asc' ? 'desc' : 'asc']) }}">Product Name <i class="bi {{request('sortBy') == 'name' && request('sort') == 'asc' ? 'bi-arrow-up' : 'bi-arrow-down'}}"></i></a></th>
                                 <th class="text-center">Description</th>
@@ -38,9 +38,9 @@
                         </thead>
                       
                         
-                            @foreach ($products as $product)
+                            @foreach ($products as $key=>$product)
                         <tr>
-                            <td class="text-center"><p class=" align-items-center">{{ $product->id }}</p></td>
+                            <td>{{ ($products->currentPage() - 1) * $products->perPage() + $loop->iteration }}</td>
                             <td class="text-center"><p class=" align-items-center">{{ $product->product_id }}</p></td>
                             <td class="text-center"><p class=" align-items-center">{{ $product->name }}</p></td>
                             <td class="text-center"><p class=" align-items-center">{{ $product->description }}</p></td>
